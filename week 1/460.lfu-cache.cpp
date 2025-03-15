@@ -12,18 +12,18 @@
 using namespace std;
 class LFUCache {
 private:
-    unordered_map<int, pair<int, pair<int, list<int>::iterator>>> cache;
-    unordered_map<int, list<int>> freqList;
+    unordered_map<int, pair<int, pair<int, list<int>::iterator>>> cache;//key, value, freq, iterator
+    unordered_map<int, list<int>> freqList;//freq, list of keys
     int minFreq;
     int maxCapacity;
 
     void updateFreq(int key) {
-        int freq = cache[key].second.first;
-        freqList[freq].erase(cache[key].second.second);
-        if (freq == minFreq && freqList[freq].empty()) minFreq++;
+        int freq = cache[key].second.first;//get the current freq
+        freqList[freq].erase(cache[key].second.second);//erase the key from the list
+        if (freq == minFreq && freqList[freq].empty()) minFreq++;//if the list is empty, update minFreq
         cache[key].second.first++;
-        freqList[cache[key].second.first].push_front(key);
-        cache[key].second.second = freqList[cache[key].second.first].begin();
+        freqList[cache[key].second.first].push_front(key);//push the key to the new freq list
+        cache[key].second.second = freqList[cache[key].second.first].begin();//update the iterator
     }
 public:
     LFUCache(int capacity) {
@@ -52,7 +52,7 @@ public:
 
             minFreq = 1;
             freqList[minFreq].push_front(key);
-            cache[key] = {value, {minFreq, freqList[minFreq].begin()}};
+            cache[key] = {value, {minFreq, freqList[minFreq].begin()}};//value, freq, iterator
         }
     }
 };
