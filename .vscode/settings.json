@@ -62,6 +62,7 @@
     "list": "cpp",
     "string": "cpp",
     "unordered_map": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "cmath": "cpp"
   }
 }
