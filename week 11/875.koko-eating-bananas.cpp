@@ -8,11 +8,11 @@
 #include <vector>
 #include <algorithm>    
 #include <cmath>        
-
+using namespace std;
 class Solution {
 private:
     // to check if Koko can finish eating all bananas in h hours at a given speed
-    bool canFinish(const std::vector<int>& piles, int h, int speed) {
+    bool canFinish(const vector<int>& piles, int h, int speed) {
         long long hoursNeeded = 0; // total hours needed (to avoid overflow)     
         // iterate through each pile and calculate the hours needed                
         for (int pile : piles) {
@@ -26,12 +26,12 @@ private:
 
 public:
     // main function to find the minimum eating speed
-    int minEatingSpeed(std::vector<int>& piles, int h) {
+    int minEatingSpeed(vector<int>& piles, int h) {
         // binary search for the minimum speed
         
         int left  = 1;   // left is the minimum speed (1 banana per hour)   
         // right is the maximum speed (max pile size)                        
-        int right = *std::max_element(piles.begin(), piles.end()); 
+        int right = *max_element(piles.begin(), piles.end()); 
 
         // binary search to find the minimum speed
         while (left < right) {
